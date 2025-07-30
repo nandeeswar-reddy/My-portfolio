@@ -1,6 +1,6 @@
 /* --- Variables & Base Styles --- */
 :root {
-    /* The Definitive Professional, Dynamic & Eye-Appealing Dark Color Palette with Colored Icons */
+    /* Color Palette derived from the example image (Dark Theme) */
     --color-background-primary: #121A2C; /* Deep dark blue-charcoal, main background */
     --color-background-secondary: #1A2234; /* Slightly lighter dark for alternating sections/cards */
     --color-background-tertiary: #252D40; /* Even lighter dark, for frosted card bases */
@@ -166,6 +166,8 @@ footer p { color: var(--color-text-muted); } /* Muted text for footer */
     text-transform: uppercase;
     letter-spacing: 0.8px;
     box-shadow: var(--shadow-medium); /* Consistent shadow for buttons */
+    position: relative; /* For potential shimmer effect */
+    overflow: hidden; /* To contain hover effects */
 }
 
 .btn-primary {
@@ -179,6 +181,22 @@ footer p { color: var(--color-text-muted); } /* Muted text for footer */
     transform: translateY(-3px); /* More pronounced lift */
     box-shadow: var(--shadow-heavy);
 }
+/* Subtle shimmer effect on primary buttons */
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 30%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2); /* White shimmer */
+    transform: skewX(-20deg);
+    transition: all var(--transition-speed-slow) ease-out;
+}
+.btn-primary:hover::before {
+    left: 120%;
+}
+
 
 .btn-secondary {
     background-color: transparent;
@@ -588,6 +606,13 @@ section {
     color: var(--color-accent-blue); /* Blue for skill names */
     margin-bottom: 18px;
     font-size: 1.5em;
+}
+/* Skill icon specific styling */
+.skill-card h3 i {
+    margin-right: 10px; /* Space between icon and text */
+    color: var(--color-accent-green); /* Green color for skill icons */
+    font-size: 1.2em; /* Slightly larger icon than text */
+    vertical-align: middle; /* Helps align the icon nicely with the text */
 }
 
 .skill-progress-bar {
